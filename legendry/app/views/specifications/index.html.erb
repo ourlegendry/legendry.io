@@ -1,0 +1,15 @@
+<h1>Specifications</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th></th>
+  </tr>
+
+  <% @specs.each do |spec| %>
+    <tr>
+      <td><%= spec.title %></td>
+      <td><%= link_to 'Show', specification_path(spec) %></td>
+    </tr>
+  <% end %>
+</table>
