@@ -21,7 +21,7 @@ class OrganizationsController < ApplicationController
   end
 
   def index
-    @organizations = Organization.all
+    @organizations = Organization.where user_id: current_user.id
   end
 
   def edit

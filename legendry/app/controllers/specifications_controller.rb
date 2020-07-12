@@ -24,7 +24,7 @@ class SpecificationsController < ApplicationController
 
   def index
     @organization = Organization.find(params[:organization_id])
-    @specs = Specification.all
+    @specs = @organization.specifications
   end
 
   def edit
