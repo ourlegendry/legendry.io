@@ -9,7 +9,16 @@
   <% @specs.each do |spec| %>
     <tr>
       <td><%= spec.title %></td>
-      <td><%= link_to 'Show', specification_path(spec) %></td>
+      <td><%= link_to 'Show', organization_specification_path(spec.organization, spec) %></td>
+      <td><%= link_to 'Edit', edit_organization_specification_path(spec.organization, spec) %></td>
+      <td>
+        <%= link_to 'Delete',
+          organization_specification_path(spec.organization, spec),
+          method: :delete,
+          data: { confirm: 'Are you sure?' } %>
+      </td>
     </tr>
   <% end %>
 </table>
+
+<%= link_to 'New specification', new_organization_specification_path(@organization) %>

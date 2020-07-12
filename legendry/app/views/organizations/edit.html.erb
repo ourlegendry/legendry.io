@@ -1,6 +1,6 @@
 <h1>Organization</h1>
 
-<%= form_with scope: :organization, url: organizations_path, local: true do |form| %>
+<%= form_with(model: @organization, local: true) do |form| %>
   <% if @organization.errors.any? %>
     <div id="error_explanation">
       <h2>
