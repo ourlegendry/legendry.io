@@ -1,4 +1,6 @@
 class SpecificationsController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @organization = Organization.find(params[:organization_id])
   end
@@ -8,8 +10,12 @@ class SpecificationsController < ApplicationController
     @spec = Specification.new(specification_params)
     @spec.organization_id = @organization.id
 
-    puts "save spec", @spec.save
-    redirect_to organization_specification_path(@organization, @spec)
+
+    if @spec.save
+      redirect_to organization_specification_path(@organization, @spec)
+    else
+      render 'new'
+    end
   end
 
   def show

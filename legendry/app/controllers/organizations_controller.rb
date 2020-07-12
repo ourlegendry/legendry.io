@@ -1,10 +1,14 @@
 class OrganizationsController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @organization = Organization.new
   end
 
   def create
     @organization = Organization.new(organization_params)
+    @organization.user_id = current_user.id
+
     if @organization.save
       redirect_to @organization
     else
