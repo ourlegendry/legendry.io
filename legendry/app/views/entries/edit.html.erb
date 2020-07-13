@@ -1,0 +1,35 @@
+<h1>Edit Entry</h1>
+
+<%= form_with(model: [@entry.specification.organization, @entry.specification, @entry], local: true) do |form| %>
+  <% if @entry.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@entry.errors.count, "error") %>
+        prohibited this organization from being saved:
+      </h2>
+      <ul>
+        <% @entry.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p><%= @entry.number %></p>
+
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </p>
+
+  <p>
+    <%= form.label :description %><br>
+    <%= form.text_field :description %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+
+<%= link_to "Back", organization_specification_path(@entry.specification.organization, @entry.specification) %>

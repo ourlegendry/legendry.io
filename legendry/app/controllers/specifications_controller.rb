@@ -20,6 +20,7 @@ class SpecificationsController < ApplicationController
 
   def show
     @spec = Specification.find(params[:id])
+    @entries = Entry.where(specification_id: @spec.id)
   end
 
   def index
