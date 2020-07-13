@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   devise_for :users
   root 'welcome#index'
   resources :organizations do
-    resources :specifications
+    resources :specifications do
+      resources :entries
+    end
   end
 end
