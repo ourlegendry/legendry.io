@@ -18,6 +18,7 @@ class OrganizationsController < ApplicationController
 
   def show
     @organization = Organization.find(params[:id])
+    @specs = @organization.specifications
   end
 
   def index
