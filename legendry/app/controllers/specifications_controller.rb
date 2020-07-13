@@ -3,13 +3,13 @@ class SpecificationsController < ApplicationController
 
   def new
     @organization = Organization.find(params[:organization_id])
+    @spec = @organization.specifications.build
   end
 
   def create
     @organization = Organization.find(params[:organization_id])
     @spec = Specification.new(specification_params)
     @spec.organization_id = @organization.id
-
 
     if @spec.save
       redirect_to organization_specification_path(@organization, @spec)
