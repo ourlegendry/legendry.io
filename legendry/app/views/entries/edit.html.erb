@@ -15,7 +15,7 @@
     </div>
   <% end %>
 
-  <p><%= @entry.number %></p>
+  <p><strong><%= @entry.number_description %></strong></p>
 
   <p>
     <%= form.label :title %><br>
@@ -31,5 +31,9 @@
     <%= form.submit %>
   </p>
 <% end %>
+
+<p>
+  <%= button_to "Commit Entry", :action => :commit %>
+</p>
 
 <%= link_to "Back", organization_specification_path(@entry.specification.organization, @entry.specification) %>

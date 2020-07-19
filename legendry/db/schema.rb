@@ -10,15 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_13_015441) do
+ActiveRecord::Schema.define(version: 2020_07_18_191922) do
 
   create_table "entries", force: :cascade do |t|
-    t.string "number"
+    t.integer "number"
     t.string "title"
     t.text "description"
     t.integer "specification_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "parent_number"
     t.index ["specification_id"], name: "index_entries_on_specification_id"
   end
 

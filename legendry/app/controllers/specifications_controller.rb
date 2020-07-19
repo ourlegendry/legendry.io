@@ -20,7 +20,14 @@ class SpecificationsController < ApplicationController
 
   def show
     @spec = Specification.find(params[:id])
-    @entries = Entry.where(specification_id: @spec.id)
+    @entries = Entry
+      .where(specification_id: @spec.id)
+      .sort_by { |e|
+        # 1000 here is arbitrary, I don't like it. I'd prefer a better system for picking a number.
+        # but it ensures that TBD entries show up at the bottom of the list (if the list is less than 1000.
+        num = e.number.nil? ? 1000 : e.number
+        e.parent_number.nil? ? [num] : (e.parent_number.split('.').map(&:to_i) + [num])
+      }
   end
 
   def index

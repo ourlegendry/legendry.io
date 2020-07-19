@@ -15,7 +15,10 @@
     </div>
   <% end %>
 
-  <p><%= @entry.number %></p>
+  <p>
+    <%= form.label :number %><br>
+    <%= text_field_tag 'temporary-number', @entry.number_description, disabled: true %>
+  </p>
 
   <p>
     <%= form.label :title %><br>
@@ -24,10 +27,11 @@
 
   <p>
     <%= form.label :description %><br>
-    <%= form.text_field :description %>
+    <%= form.text_area :description %>
   </p>
 
   <p>
+    <%= form.hidden_field :parent_number %>
     <%= form.submit %>
   </p>
 <% end %>
