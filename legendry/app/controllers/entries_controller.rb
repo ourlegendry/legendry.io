@@ -57,17 +57,16 @@ class EntriesController < ApplicationController
   def commit
     @entry = Entry.find(params[:id])
     if @entry.number.nil?
-      puts 'COMMITTING'
-      
+      # determine the next number by:
+      #   1. counting all of the siblings that have numbers
+      #   2. adding 1 to the result
+      #
+      #   because you can currently delete an entry, if you do so, you lose
+      #   that number forever, this will be addressed in the future
       all_siblings = Entry.where(parent_number: @entry.parent_number)
       @siblings = all_siblings.where.not(number: nil).or(all_siblings.where.not(number: ''))
-      
-      puts "siblings", @siblings
-
       @entry.number = @siblings.count+1
       @entry.save
-    else
-      puts 'NOT COMMITTED'
     end
   end
 
