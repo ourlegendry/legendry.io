@@ -23,8 +23,9 @@ class SpecificationsController < ApplicationController
     @entries = Entry
       .where(specification_id: @spec.id)
       .sort_by { |e|
-        # 1000 here is arbitrary, I don't like it. I'd prefer a better system for picking a number.
+        # TODO: 1000 here is arbitrary, I don't like it. I'd prefer a better system for picking a number.
         # but it ensures that TBD entries show up at the bottom of the list (if the list is less than 1000.
+        # It also allows me to move on for the time being.
         num = e.number.nil? ? 1000 : e.number
         e.parent_number.nil? ? [num] : (e.parent_number.split('.').map(&:to_i) + [num])
       }
