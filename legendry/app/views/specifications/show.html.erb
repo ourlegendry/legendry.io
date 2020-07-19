@@ -6,8 +6,10 @@
   <div>
       <%= link_to 'Edit', edit_organization_specification_entry_path(@spec.organization, @spec, entry) %>
     | <%= link_to 'Delete', organization_specification_entry_path(@spec.organization, @spec, entry), method: :delete, data: { confirm: 'Are you sure?' } %>
-    | <%= link_to 'New entry', new_organization_specification_entry_path(@spec.organization, @spec, :parent_number => "#{entry.number_description}") %>
-  </div>
+    <% if !entry.number.nil? %>
+      | <%= link_to 'New entry', new_organization_specification_entry_path(@spec.organization, @spec, :parent_number => "#{entry.number_description}") %>
+    </div>
+  <% end %>
 <% end %>
 
 <div>
